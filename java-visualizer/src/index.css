@@ -1,0 +1,726 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: #f7f7f8;
+  color: #222;
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: #f7f7f8;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 24px;
+
+  background: #333333;
+  color: white;
+
+  border-bottom: 1px solid #222;
+}
+
+.header h1 {
+  margin: 0;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.header p {
+  margin: 3px 0 0;
+
+  font-size: 12px;
+
+  color: #aaa;
+}
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat {
+  min-width: 70px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 10px;
+
+  border: 1px solid #555;
+  border-radius: 6px;
+
+  background: #292929;
+}
+
+.stat strong {
+  font-size: 16px;
+}
+
+.stat span {
+  margin-top: 2px;
+
+  font-size: 9px;
+
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main {
+  flex: 1;
+
+  display: grid;
+
+  grid-template-columns: 42% 58%;
+
+  min-height: 0;
+}
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.editor-panel,
+.visualizer-panel {
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-panel {
+  border-right: 1px solid #ccc;
+}
+
+.visualizer-panel {
+  background: #f7f7f8;
+}
+
+/* =========================================================
+   PANEL TITLE
+========================================================= */
+
+.panel-title {
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 15px;
+
+  border-bottom: 1px solid #ccc;
+
+  background: #efefed;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.live {
+  color: #333;
+
+  font-size: 10px;
+}
+
+.element-count {
+  color: #777;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   EDITOR
+========================================================= */
+
+.editor {
+  flex: 1;
+
+  min-height: 0;
+
+  background: #1e1e1e;
+}
+
+/* =========================================================
+   VISUALIZER
+========================================================= */
+
+.flow-container {
+  flex: 1;
+
+  min-height: 0;
+
+  position: relative;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  color: #555;
+
+  text-align: center;
+}
+
+.empty-state div {
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.empty-state span {
+  font-size: 12px;
+
+  color: #999;
+}
+
+/* =========================================================
+   CLASS NODE
+========================================================= */
+
+.class-node {
+  min-width: 240px;
+
+  overflow: hidden;
+
+  background: white;
+
+  border: 2px solid #222;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.class-header {
+  padding: 12px;
+
+  background: #222;
+
+  color: white;
+
+  text-align: center;
+
+  font-weight: 700;
+
+  font-size: 15px;
+}
+
+.class-fields {
+  padding: 4px 0;
+}
+
+.class-field {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 8px 12px;
+
+  border-bottom: 1px solid #eee;
+
+  font-family: monospace;
+
+  font-size: 12px;
+}
+
+.class-field:last-child {
+  border-bottom: none;
+}
+
+.field-type {
+  color: #777;
+}
+
+.no-fields {
+  padding: 15px;
+
+  text-align: center;
+
+  color: #999;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   OBJECT NODE
+========================================================= */
+
+.object-node {
+  min-width: 240px;
+
+  overflow: hidden;
+
+  background: white;
+
+  border: 2px solid #333;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.object-header {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  padding: 12px;
+
+  background: #333;
+
+  color: white;
+
+  font-size: 14px;
+}
+
+.object-header span {
+  color: #aaa;
+}
+
+.object-attributes {
+  padding: 4px 0;
+}
+
+.object-attribute {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 8px 12px;
+
+  border-bottom: 1px solid #eee;
+
+  font-family: monospace;
+
+  font-size: 12px;
+}
+
+.object-attribute:last-child {
+  border-bottom: none;
+}
+
+.attribute-value {
+  font-weight: 600;
+
+  color: #333;
+
+  max-width: 120px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   ARRAY NODE
+========================================================= */
+
+.array-node {
+  min-width: 300px;
+
+  overflow: hidden;
+
+  background: white;
+
+  border: 2px solid #222;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.array-header {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 12px;
+
+  background: #222;
+
+  color: white;
+
+  font-size: 15px;
+}
+
+.array-header span {
+  color: #999;
+}
+
+.array-container {
+  display: flex;
+
+  padding: 15px;
+
+  gap: 0;
+
+  background: white;
+
+  overflow-x: auto;
+}
+
+.array-cell-wrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.array-index {
+  width: 55px;
+
+  padding-bottom: 5px;
+
+  text-align: center;
+
+  font-size: 11px;
+
+  color: #888;
+}
+
+.array-cell {
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #333;
+
+  font-family: monospace;
+
+  font-weight: 600;
+
+  background: #f7f7f8;
+}
+
+.array-node .react-flow__handle {
+  background: #222;
+}
+
+/* =========================================================
+   LINKED LIST NODE
+========================================================= */
+
+.linked-list-node {
+  width: 180px;
+
+  position: relative;
+
+  background: white;
+
+  border: 2px solid #222;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Variable name */
+
+.ll-variable {
+  position: absolute;
+
+  top: -24px;
+
+  left: 0;
+
+  width: 100%;
+
+  text-align: center;
+
+  font-family: monospace;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: #555;
+}
+
+/* Node header */
+
+.ll-header {
+  padding: 9px;
+
+  background: #222;
+
+  color: white;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  border-radius: 6px 6px 0 0;
+}
+
+/* Node body */
+
+.ll-body {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Data */
+
+.ll-data {
+  min-height: 70px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  border-right: 1px solid #ccc;
+}
+
+/* Next */
+
+.ll-next {
+  min-height: 70px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+}
+
+.ll-label {
+  font-size: 9px;
+
+  color: #888;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+.ll-data strong,
+.ll-next strong {
+  font-family: monospace;
+
+  font-size: 14px;
+
+  color: #222;
+}
+
+/* Linked list handles */
+
+.linked-list-node .react-flow__handle {
+  width: 11px;
+  height: 11px;
+
+  background: #222;
+
+  border: 2px solid white;
+}
+
+.linked-list-node
+  .react-flow__handle-left {
+  left: -7px;
+}
+
+.linked-list-node
+  .react-flow__handle-right {
+  right: -7px;
+}
+
+/* =========================================================
+   REACT FLOW
+========================================================= */
+
+.react-flow__node {
+  cursor: grab;
+}
+
+.react-flow__node:active {
+  cursor: grabbing;
+}
+
+.react-flow__handle {
+  width: 9px;
+  height: 9px;
+
+  background: #222;
+
+  border: 2px solid white;
+}
+
+.react-flow__edge-path {
+  stroke: #333;
+
+  stroke-width: 2.5;
+}
+
+.react-flow__edge-text {
+  font-size: 11px;
+
+  font-weight: 600;
+
+  fill: #333;
+}
+
+.react-flow__edge-textbg {
+  fill: #f7f7f8;
+}
+
+/* =========================================================
+   MINIMAP
+========================================================= */
+
+.react-flow__minimap {
+  border: 1px solid #ccc;
+
+  border-radius: 6px;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.react-flow__controls {
+  border: 1px solid #ccc;
+
+  box-shadow: none;
+}
+
+.react-flow__controls-button {
+  width: 30px;
+  height: 30px;
+
+  background: white;
+
+  border-bottom: 1px solid #ddd;
+}
+
+.react-flow__controls-button:hover {
+  background: #f0f0f0;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-panel {
+    height: 45%;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .visualizer-panel {
+    height: 55%;
+  }
+
+  .stats {
+    display: none;
+  }
+}
